@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pagina uscita di scena · Drin e Delaide</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=ABeeZee&display=swap">
+<style>
+/* Palco al buio con il sipario chiuso: stessi colori e caratteri del sito */
+:root { --stage: #0A0808; --ivory: #EBD6D4; --muted: #BFA7A5; --red: #B63E3E; --spot: #E8857C;
+  --display: "Baloo 2", "Trebuchet MS", "Segoe UI", system-ui, sans-serif; --body: "ABeeZee", "Segoe UI", system-ui, sans-serif; color-scheme: dark; }
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; background: var(--stage); color: var(--ivory); font-family: var(--body); overflow: hidden; }
+.palco { position: relative; min-height: 100%; display: grid; place-items: center; text-align: center;
+  padding: max(24px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(24px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
+/* Sipario chiuso: due teli che si toccano al centro, con le pieghe */
+.telo { position: absolute; top: 0; bottom: 0; width: 51%; z-index: 0;
+  background: repeating-linear-gradient(90deg, #6E1D1F 0 18px, #A33335 30px, #C2494A 40px, #8E2628 54px, #6E1D1F 66px);
+  box-shadow: inset 0 -120px 120px -40px rgba(0, 0, 0, .7), inset 0 60px 80px -30px rgba(0, 0, 0, .55); }
+.telo.sx { left: 0; transform-origin: 0 0; }
+.telo.dx { right: 0; transform-origin: 100% 0; }
+.mantovana { position: absolute; top: 0; left: 0; right: 0; height: 64px; z-index: 2;
+  background: radial-gradient(circle at 50% 0, #B63E3E 34px, transparent 35px) 0 22px / 72px 44px repeat-x, linear-gradient(#8E2628, #B63E3E);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, .45); }
+.mantovana::after { content: ""; position: absolute; left: 0; right: 0; bottom: -22px; height: 44px;
+  background: radial-gradient(circle at 50% 0, #B63E3E 34px, transparent 35px) 0 0 / 72px 44px repeat-x; }
+/* Occhio di bue sul sipario */
+.luce { position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: radial-gradient(42vmin 38vmin at 50% 52%, rgba(255, 230, 205, .28), rgba(255, 230, 205, .08) 60%, transparent 75%); }
+.cartello { position: relative; z-index: 3; display: grid; gap: 14px; justify-items: center; max-width: 34rem;
+  background: rgba(10, 8, 8, .78); border: 1px solid rgba(235, 214, 212, .18); border-radius: 22px; padding: clamp(24px, 5vw, 40px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, .55); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); }
+.cartello img { width: 72px; height: 72px; border-radius: 50%; background: #fff; }
+.codice { font: 800 .8rem var(--display); letter-spacing: .24em; color: var(--spot); text-transform: uppercase; }
+h1 { margin: 0; font-family: var(--display); font-weight: 800; font-size: clamp(2rem, 6vw, 3.2rem); line-height: 1; text-transform: uppercase; text-wrap: balance; }
+p { margin: 0; color: var(--muted); line-height: 1.55; max-width: 30ch; }
+.btn { display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 12px 24px; margin-top: 6px; border-radius: 999px;
+  background: var(--red); color: #fff; font-weight: 600; text-decoration: none; transition: transform .2s, background .2s; }
+.btn:hover { background: #C94A4A; transform: translateY(-2px); }
+.btn:focus-visible { outline: 2px solid var(--spot); outline-offset: 3px; }
+.btn svg { width: 18px; height: 18px; }
+@media (prefers-reduced-motion: no-preference) {
+  .telo.sx { animation: ondeggia 6s ease-in-out infinite alternate; }
+  .telo.dx { animation: ondeggia 6s ease-in-out -3s infinite alternate-reverse; }
+  @keyframes ondeggia { from { transform: skewX(-.6deg); } to { transform: skewX(.6deg); } }
+  .cartello { animation: scende .9s cubic-bezier(.25, 1.2, .4, 1) both; }
+  @keyframes scende { from { opacity: 0; transform: translateY(-40px) rotate(-3deg); } }
+}
+</style>
+</head>
+<body>
+<main class="palco">
+  <div class="telo sx" aria-hidden="true"></div>
+  <div class="telo dx" aria-hidden="true"></div>
+  <div class="mantovana" aria-hidden="true"></div>
+  <div class="luce" aria-hidden="true"></div>
+  <div class="cartello">
+    <img src="/img/logo.png" alt="Drin e Delaide" width="72" height="72">
+    <span class="codice">Errore 404 · Sipario chiuso</span>
+    <h1>Questa pagina è uscita di scena</h1>
+    <p>Forse ha sbagliato battuta, o forse non è mai salita sul palco. Lo spettacolo continua di qua.</p>
+    <a class="btn" href="/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Torna in platea</a>
+  </div>
+</main>
+</body>
+</html>
